@@ -1,0 +1,65 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row  style="padding: 0 5px;">
+      <span>Grocery app</span>
+    </mat-toolbar-row>
+    </mat-toolbar>
+    
+    
+    <mat-card>
+        <form (submit)="onAddInventory(vendorform)" #vendorform="ngForm">
+        <mat-form-field>
+          <input
+          matInput
+          name = "itemname"
+          ngModel
+          required
+          placeholder="Enter the name of the item"
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+          matInput
+          name="itemcategory"
+          ngModel
+          placeholder="Enter the item category">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput 
+          name="itembrand"
+          ngModel
+          placeholder="Enter Brand name of item"
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput rows="6"
+          name="itemdescription"
+          ngModel
+          placeholder="Enter Item Description">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput 
+          name="unit"
+          ngModel
+          placeholder="Item Unit for measure">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput 
+          name="itemprice"
+          ngModel
+          required
+          placeholder="Enter price per item"
+          >
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit">Save</button>
+        </form>
+      </mat-card>
+      
+      
+    
+    
+    
+    
+    

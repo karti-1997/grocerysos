@@ -1,0 +1,60 @@
+<p>Hello</p>
+<p>inventory works!</p>
+<div class="eaton mat-typography" style="overflow-x:hidden;" fxFlexFill cdkScrollable>
+	<mat-toolbar color="primary" class="main-header mat-elevation-z4" [class.hidden]="toggleSearch">
+		<mat-toolbar-row style="padding: 0 5px;">
+    <div style="padding:8px 0 0 10px; flex:1;">
+     <div class="mat-title" style="margin-bottom:2px;">Grocery app</div>
+     <div class="mat-subheading-2" style="line-height:.6rem;">Inventory List</div>
+    </div>
+    <!--button mat-icon-button  (click)="openSearch()">
+        <mat-icon>search</mat-icon>
+    </button-->
+    <button mat-button [routerLink]="['/editinventory']">
+      <p>New Item</p>
+       </button>   
+  </mat-toolbar-row>
+  	</mat-toolbar>
+<mat-toolbar class="search-block mat-elevation-z4" [class.active]="toggleSearch">
+		<mat-toolbar-row style="padding: 0 5px;">
+			<button class="search-icon" mat-icon-button disabled>
+        <mat-icon>search</mat-icon>
+      </button>
+      <input class="search-control" type="text" placeholder="Search" [(ngModel)]="searchText" #searchbar>
+      <button mat-button mat-icon-button (click)="searchClose()">
+        <mat-icon>close</mat-icon>
+      </button> 
+  </mat-toolbar-row>
+  </mat-toolbar>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Item id</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Item Brand</th>
+        <th scope="col">Item Category</th>
+        <th scope="col">Unit of Measure</th>
+        <th scope="col">Price per Unit</th>
+        <th scope="col">Item Description</th>
+        <th scope="col">Item Type</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of list| filter: searchText" >
+      <tr>
+        <th scope="row">{{item.Itemid}}</th>
+        <td>{{item.Itemname}}</td>
+        <td>{{item.itemcategory}}</td>
+        <td>{{item.brandname}}</td>
+        <td>{{item.unit}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.ItemDescription}}</td>
+        <td>{{item.ItemType}}</td>
+        <td>
+        <button mat-icon-button  [routerLink]="['/editinventory',item.Itemid]">
+        <mat-icon>edit</mat-icon>
+        </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
