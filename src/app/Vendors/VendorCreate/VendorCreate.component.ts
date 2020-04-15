@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from "@angular/router";
+import { VendorsService } from '../vendor.service'
 
 @Component({
   selector: 'app-vendor-create',
@@ -8,23 +9,31 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
   styleUrls: ['./VendorCreate.component.scss']
 })
 export class VendorCreateComponent implements OnInit {
-  vendorname = '';
+  storename = '';
   vendorchainname = '';
-  vendorowner = '';
-  vendoraddress = '';
+  careof='';
+  doorno = '';
+  addressline1='';
+  City='';
+  District='';
+  Pincode='';
+  Country='';
   whatsappnumber = '';
   contactnumber = '';
   email='';
-  Paymentmethod='';
+  deliveryWindow='';
+  pickupWindow='';
+  address=[];
+  contact=[];
   private mode = "edit";
   private vendorId: string;
-  constructor(public route: ActivatedRoute) { }
+  constructor(public route: ActivatedRoute, public vendorservice: VendorsService) { }
   vendor=[];
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("vendorId")) {
+      if (paramMap.has("VendorId")) {
         this.mode = "edit";
-        this.vendorId = paramMap.get("vendorId");
+        this.vendorId = paramMap.get("VendorId");
         /*this.postsService.getPost(this.postId).subscribe(postData => {
           this.isLoading = false;
           this.post = {
@@ -55,15 +64,22 @@ export class VendorCreateComponent implements OnInit {
       return ;
     }
     if (this.mode === "create") {
-      /*this.postsService.addPost(
-        this.form.value.title,
-        this.user,
-        this.form.value.image
-      );*/
+    this.address.push({'careOf':form.value.careOf });
+    this.address.push({'doorNo': form.value.doorNo});
+    this.address.push({'addressLine1': form.value.addressLine1,});
+    this.address.push({'city': form.value.city});
+    this.address.push({'district':form.value.district});
+    this.address.push({'pincode': form.value.pincode});
+    this.address.push({'country': form.value.country});
+    this.contact.push({'whatsApp':form.value.whatsApp},
+        {'mobile':form.value.mobile});
+      this.vendorservice.addPost(form.value.storeName,
+        form.value.fname,
+        form.value.lname,
+        this.address,this.contact,form.value.email,'franchiseId',form.value.deliveryWindow,form.value.pickupWindow);
       alert('Vendor Created');
-      console.log(form.value.vendorname,form.value.vendorchainname,
-      form.value.vendorowner,form.value.vendoraddress,form.value.whatsappnumber,
-      form.value.contactnumber,form.value.email,form.value.Paymentmethod);
+      console.log(form.value.storeName,form.value.fname,
+      form.value.lname,this.address,this.contact);
     } else {
       /*this.postsService.updatePost(
         this.postId,
@@ -72,11 +88,12 @@ export class VendorCreateComponent implements OnInit {
         this.form.value.image
       );*/
       alert('Vendor updated');
-      console.log(form.value.vendorname,form.value.vendorchainname,
-      form.value.vendorowner,form.value.vendoraddress,form.value.whatsappnumber,
-      form.value.contactnumber,form.value.email,form.value.Paymentmethod);
+      console.log(form.value.storename,form.value.vendorchainname,
+        form.value.vendorowner,form.value.careof,form.value.doorno,form.value.addressline1,
+        form.value.City,form.value.District,form.value.Pincode,
+        form.value.Country,form.value.whatsappnumber,
+        form.value.contactnumber,form.value.email,this.address,this.contact);
     }
     form.resetForm();
   }  
-   
   }

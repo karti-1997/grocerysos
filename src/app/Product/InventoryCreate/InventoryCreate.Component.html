@@ -10,18 +10,11 @@
         <mat-form-field>
           <input
           matInput
-          name = "itemname"
+          name = "productName"
           ngModel
           required
-          placeholder="Enter the name of the item"
+          placeholder="Enter the name of the product"
           >
-        </mat-form-field>
-        <mat-form-field>
-          <input
-          matInput
-          name="itemcategory"
-          ngModel
-          placeholder="Enter the item category">
         </mat-form-field>
         <mat-form-field>
           <input matInput 
@@ -31,16 +24,16 @@
           >
         </mat-form-field>
         <mat-form-field>
-          <input matInput rows="6"
-          name="itemdescription"
-          ngModel
-          placeholder="Enter Item Description">
-        </mat-form-field>
-        <mat-form-field>
           <input matInput 
           name="unit"
           ngModel
           placeholder="Item Unit for measure">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput rows="6" 
+          name="Description"
+          ngModel
+          placeholder="Enter Item Description">
         </mat-form-field>
         <mat-form-field>
           <input matInput 
@@ -48,6 +41,14 @@
           ngModel
           required
           placeholder="Enter price per item"
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput 
+          name="Stockcnt"
+          ngModel
+          required
+          placeholder="Enter Stock count"
           >
         </mat-form-field>
         <button

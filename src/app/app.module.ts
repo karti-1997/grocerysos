@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { FilterPipe} from './shared/filter.pipe';
@@ -17,10 +18,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { VendorComponent } from './vendor/vendor.component';
-import { InventoryComponent } from './inventory/inventory.component';
-import { VendorCreateComponent } from './VendorCreate/VendorCreate.component';
-import { InventoryCreateComponent } from './InventoryCreate/InventoryCreate.Component';
+import { VendorComponent } from './Vendors/vendor/vendor.component';
+import { InventoryComponent } from './Product/inventory/inventory.component';
+import { VendorCreateComponent } from './Vendors/VendorCreate/VendorCreate.component';
+import { InventoryCreateComponent } from './Product/InventoryCreate/InventoryCreate.Component';
 import { FilterPipes } from './shared/inventoryfilter.pipe';
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FilterPipes } from './shared/inventoryfilter.pipe';
     CommonModule,
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     MatFormFieldModule,
     ReactiveFormsModule,

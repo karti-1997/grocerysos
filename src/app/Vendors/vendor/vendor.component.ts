@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import {listData} from '../shared/vendor';
+import {listData} from '../../shared/vendor';
 @Component({
   selector: 'app-vendor',
   templateUrl: './vendor.component.html',

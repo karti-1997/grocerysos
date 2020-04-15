@@ -34,10 +34,10 @@
   <div mat-line>{{item.Contactnumber}}</div>
   <div mat-line>{{item.address}}</div>
   <div>
-  <button mat-button mat-icon-button [routerLink]="['/edit', item.vendorid]">
+  <button mat-button mat-icon-button [routerLink]="['/create', item.vendorid]">
     <mat-icon>edit</mat-icon>
   </button> 
-  <button [routerLink]="['/product']">Edit Inventory</button>
+  <button [routerLink]="['/product',item.vendorid]">Edit Inventory</button>
   </div>
 	</mat-list-item>
   <mat-list-item *ngIf="(list | filter: searchText).length === 0">

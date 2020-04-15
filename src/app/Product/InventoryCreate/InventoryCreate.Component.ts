@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from "@angular/router";
+import { ProductService } from '../product.service';
+import { Inventory } from '../product.model';
 
 @Component({
   selector: 'app-inventory-create',
@@ -9,21 +11,21 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 })
 export class InventoryCreateComponent implements OnInit {
     
-  itemname = '';
-  itemcategory = '';
+  productName = '';
   itembrand = '';
-  itemdescription = '';
+  Description = '';
   unit = '';
   itemprice = '';
+  Stockcnt='';
   private mode = "edit";
   private vendorId: string;
-  constructor(public route: ActivatedRoute) { }
-  vendor=[];
+  constructor(public route: ActivatedRoute,Productservice: ProductService) { }
+  
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("id")) {
+      if (paramMap.has("itemid")) {
         this.mode = "edit";
-        this.vendorId = paramMap.get("id");
+        this.vendorId = paramMap.get("itemid");
         /*this.postsService.getPost(this.postId).subscribe(postData => {
           this.isLoading = false;
           this.post = {
@@ -40,7 +42,7 @@ export class InventoryCreateComponent implements OnInit {
         });*/
       } else {
         this.mode = "create";
-        this.vendorId = null;
+        this.vendorId = paramMap.get("VendorId");
       }
     });
   /*this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -54,14 +56,14 @@ export class InventoryCreateComponent implements OnInit {
       return ;
     }
     if (this.mode === "create") {
-      /*this.postsService.addPost(
+      /*this.pService.addPost(
         this.form.value.title,
         this.user,
         this.form.value.image
       );*/
       alert('Inventory Created');
-      console.log(form.value.itemname,form.value.itemcategory,form.value.itembrand,
-      form.value.itemdescription,form.value.unit,form.value.itemprice);
+      console.log(form.value.productName,form.value.itembrand,form.value.Stockcnt,
+      form.value.Description,form.value.unit,form.value.itemprice);
     } else {
       /*this.postsService.updatePost(
         this.postId,
@@ -70,8 +72,8 @@ export class InventoryCreateComponent implements OnInit {
         this.form.value.image
       );*/
       alert('Inventory updated');
-      console.log(form.value.itemname,form.value.itemcategory,form.value.itembrand,
-        form.value.itemdescription,form.value.unit,form.value.itemprice);
+      console.log(form.value.productName,form.value.itembrand,form.value.Stockcnt,
+        form.value.Description,form.value.unit,form.value.itemprice);
     }
     form.resetForm();
   }  
