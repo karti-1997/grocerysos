@@ -9,7 +9,7 @@ export interface Vendor{
         addressLine1: string;
         city: string;
         district: string;
-        pinCode: string;
+        pincode: string;
         country: string;
     }],
     contact: [{

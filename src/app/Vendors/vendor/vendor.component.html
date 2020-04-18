@@ -29,15 +29,18 @@
 <mat-list>
 	<mat-list-item *ngFor="let item of list | filter: searchText">
   <mat-icon mat-list-avatar style="width:auto">person</mat-icon>
-  <div mat-line>{{item.vendorname}}</div>
-	<div mat-line>{{item.whatsappnumber}}</div>
-  <div mat-line>{{item.Contactnumber}}</div>
-  <div mat-line>{{item.address}}</div>
+  <div mat-line>{{item.storeName}}</div>
+  <div mat-line>{{item.lname}}</div>
+  <div mat-line>{{item.address[0].doorNo}},{{item.address[0].addressLine1}}</div>
+  <div mat-line>{{item.address[0].city}},{{item.address[0].district}}-{{item.address[0].pincode}}</div>
+  <div mat-line>{{item.address[0].country}}</div>
+  <div mat-line>{{item.contact[0].whatsApp}}</div>
+  <div mat-line>{{item.contact[0].mobile}}</div>
   <div>
-  <button mat-button mat-icon-button [routerLink]="['/create', item.vendorid]">
+  <button mat-button mat-icon-button [routerLink]="['/create', item.vendorId]">
     <mat-icon>edit</mat-icon>
   </button> 
-  <button [routerLink]="['/product',item.vendorid]">Edit Inventory</button>
+  <button [routerLink]="['/product',item.vendorId]">Edit Inventory</button>
   </div>
 	</mat-list-item>
   <mat-list-item *ngIf="(list | filter: searchText).length === 0">

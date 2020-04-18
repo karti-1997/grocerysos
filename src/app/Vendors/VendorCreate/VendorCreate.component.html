@@ -10,77 +10,77 @@
       <input
       matInput
       name = "storeName"
-      ngModel
       required
       placeholder="Enter Store Name:(business/branch name)"
+      [(ngModel)]="storeName"
       >
     </mat-form-field>
     <mat-form-field>
       <input
       matInput
       name="fname"
-      ngModel
+      [(ngModel)]="fname"
       placeholder="Enter Vendor chain name">
     </mat-form-field>
     <mat-form-field>
       <input matInput 
       name="lname"
-      ngModel
+      [(ngModel)]="lname"
       placeholder="Enter Vendor owner name"
       >
     </mat-form-field>
     <mat-form-field>
       <input matInput 
       name="careOf"
-      ngModel
+      [(ngModel)]="careof"
       placeholder="Enter person take care of">
     </mat-form-field>
     <mat-form-field>
       <input matInput 
       name="doorNo"
-      ngModel
+      [(ngModel)]="doorno"
       placeholder="Enter Doorno of office">
     </mat-form-field>
     <mat-form-field>
       <input matInput rows="6"
       name="addressLine1"
-      ngModel
+      [(ngModel)]="addressline1"
       placeholder="Enter the shop address">
     </mat-form-field>
     <mat-form-field>
       <input matInput 
       name="city"
-      ngModel
+      [(ngModel)]="City"
       placeholder="Enter your City">
     </mat-form-field>
     <mat-form-field>
       <input matInput 
       name="district"
-      ngModel
+      [(ngModel)]="District"
       placeholder="Enter your District">
     </mat-form-field>
     <mat-form-field>
       <input matInput 
       name="pincode"
-      ngModel
+      [(ngModel)]="pincode"
       placeholder="Enter Pincode">
     </mat-form-field>
     <mat-form-field>
       <input matInput 
       name="country"
-      ngModel
+      [(ngModel)]="Country"
       placeholder="Enter your Country">
     </mat-form-field>
     <mat-form-field>
       <input matInput 
       name="whatsApp"
-      ngModel
+      [(ngModel)]="whatsappnumber"
       placeholder="Enter Whatsapp number">
     </mat-form-field>
     <mat-form-field>
       <input matInput 
       name="mobile"
-      ngModel
+      [(ngModel)]="contactnumber"
       required
       placeholder="Enter Contact number"
        >
@@ -88,7 +88,7 @@
     <mat-form-field>
         <input matInput 
         name="email"
-        ngModel
+        [(ngModel)]="email"
         required
         placeholder="Enter email"
         >
@@ -96,7 +96,7 @@
       <mat-form-field>
         <input matInput
         name="deliveryWindow"
-        ngModel
+        [(ngModel)]="deliveryWindow"
         required
         placeholder="Enter your Delivery Time"
         >
@@ -104,7 +104,7 @@
       <mat-form-field>
         <input matInput
         name="pickupWindow"
-        ngModel
+        [(ngModel)]="pickupWindow"
         required
         placeholder="Enter your pickup Time"
         >

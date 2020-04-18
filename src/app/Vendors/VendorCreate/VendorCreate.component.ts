@@ -1,25 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from "@angular/router";
-import { VendorsService } from '../vendor.service'
-
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Router,ActivatedRoute, ParamMap } from "@angular/router";
+import { VendorsService } from '../vendor.service';
+import {Vendor} from '../vendor.model';
 @Component({
   selector: 'app-vendor-create',
   templateUrl: './VendorCreate.component.html',
   styleUrls: ['./VendorCreate.component.scss']
 })
 export class VendorCreateComponent implements OnInit {
-  storename = '';
-  vendorchainname = '';
+  storeName = '';
+  lname='';
+  fname = '';
   careof='';
   doorno = '';
   addressline1='';
   City='';
   District='';
-  Pincode='';
+  pincode='';
   Country='';
-  whatsappnumber = '';
-  contactnumber = '';
+  whatsappnumber;
+  contactnumber;
   email='';
   deliveryWindow='';
   pickupWindow='';
@@ -27,27 +29,33 @@ export class VendorCreateComponent implements OnInit {
   contact=[];
   private mode = "edit";
   private vendorId: string;
-  constructor(public route: ActivatedRoute, public vendorservice: VendorsService) { }
-  vendor=[];
+  constructor(public route: ActivatedRoute, public vendorservice: VendorsService,public router: Router) { }
+  v: Vendor;
+  vendor= [];
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
+
       if (paramMap.has("VendorId")) {
         this.mode = "edit";
         this.vendorId = paramMap.get("VendorId");
-        /*this.postsService.getPost(this.postId).subscribe(postData => {
-          this.isLoading = false;
-          this.post = {
-            id: postData._id,
-            title: postData.title,
-            content: postData.content,
-            imagePath: postData.imagePath
-          };
-          this.form.setValue({
-            title: this.post.title,
-            content: this.post.content,
-            image: this.post.imagePath
-          });
-        });*/
+        this.v=this.vendorservice.getVendor(this.vendorId);
+        console.log(this.v);
+        this.storeName=this.v.storeName;
+        this.fname = this.v.fname;
+        this.lname = this.v.lname;
+        this.address=this.v.address;
+        this.careof=this.v.address[0].careOf;
+        this.doorno = this.v.address[0].doorNo;
+        this.addressline1=this.v.address[0].addressLine1;
+        this.City=this.v.address[0].city;
+        this.District=this.v.address[0].district;
+        this.pincode=this.v.address[0].pincode;
+        this.Country=this.v.address[0].country;
+        this.contact=this.v.contact;
+        this.whatsappnumber = this.v.contact[0].whatsApp;
+        this.contactnumber = this.v.contact[0].mobile;
+        this.deliveryWindow=this.v.deliveryWindow;
+        this.pickupWindow=this.v.pickupWindow;
       } else {
         this.mode = "create";
         this.vendorId = null;
@@ -73,20 +81,28 @@ export class VendorCreateComponent implements OnInit {
     this.address.push({'country': form.value.country});
     this.contact.push({'whatsApp':form.value.whatsApp},
         {'mobile':form.value.mobile});
-      this.vendorservice.addPost(form.value.storeName,
+      this.vendorservice.addVendor(form.value.storeName,
         form.value.fname,
         form.value.lname,
         this.address,this.contact,form.value.email,'franchiseId',form.value.deliveryWindow,form.value.pickupWindow);
       alert('Vendor Created');
+      this.router.navigate(['/']);
       console.log(form.value.storeName,form.value.fname,
       form.value.lname,this.address,this.contact);
     } else {
-      /*this.postsService.updatePost(
-        this.postId,
-        this.form.value.title,
-        this.form.value.content,
-        this.form.value.image
-      );*/
+      this.address.push({'careOf':form.value.careOf });
+      this.address.push({'doorNo': form.value.doorNo});
+      this.address.push({'addressLine1': form.value.addressLine1,});
+      this.address.push({'city': form.value.city});
+      this.address.push({'district':form.value.district});
+      this.address.push({'pincode': form.value.pincode});
+      this.address.push({'country': form.value.country});
+      this.contact.push({'whatsApp':form.value.whatsApp},
+        {'mobile':form.value.mobile});
+      this.vendorservice.updatePost(this.vendorId,'123456',form.value.storeName,
+        form.value.fname,
+        form.value.lname,
+        this.address,this.contact,form.value.email,'franchiseId',form.value.deliveryWindow,form.value.pickupWindow);
       alert('Vendor updated');
       console.log(form.value.storename,form.value.vendorchainname,
         form.value.vendorowner,form.value.careof,form.value.doorno,form.value.addressline1,

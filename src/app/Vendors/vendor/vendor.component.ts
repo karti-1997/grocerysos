@@ -1,4 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Vendor } from '../vendor.model';
+import { VendorsService } from '../vendor.service';
 import {listData} from '../../shared/vendor';
 @Component({
   selector: 'app-vendor',
@@ -6,13 +9,24 @@ import {listData} from '../../shared/vendor';
   styleUrls: ['./vendor.component.scss']
 })
 export class VendorComponent implements OnInit {
-    list = listData.reverse();
+    private vendor: Vendor;
+    vendors: Vendor [] = [];
+    private vendorSub: Subscription;
+    list: Vendor[] =[];
+    //list = listData.reverse();
     @ViewChild('searchbar') searchbar: ElementRef;
     searchText = '';
   
     toggleSearch: boolean = false;
-    constructor() { }
+    constructor(public vendorsService: VendorsService,) { }
     ngOnInit(): void {
+      this.vendorsService.getVendors();
+      this.vendorSub = this.vendorsService.getVendorUpdateListener()
+      .subscribe((vendors: Vendor[]) => {
+      this.vendors = vendors;
+      this.list=vendors;
+      console.log(this.vendors);
+    });
     }
     openSearch() {
         this.toggleSearch = true;
