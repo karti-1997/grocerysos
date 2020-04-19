@@ -1,6 +1,11 @@
 import { Component, OnInit ,ViewChild,ElementRef} from '@angular/core';
+import { Subscription } from 'rxjs';
 import {InventorylistData} from '../../shared/inventory';
 import { ActivatedRoute, ParamMap } from "@angular/router";
+
+
+import { Inventory } from "../product.model";
+import { ProductService } from "../product.service";
 
 @Component({
   selector: 'app-inventory',
@@ -8,31 +13,28 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
   styleUrls: ['./inventory.component.scss']
 })
 export class InventoryComponent implements OnInit {
-  list = InventorylistData.reverse();
+  //list = InventorylistData.reverse();
+  inventories: Inventory[] = [];
+  list: Inventory[]=[];
   @ViewChild('searchbar') searchbar: ElementRef;
   searchText = '';
   vendorId='';
   toggleSearch: boolean = false;
-  constructor(public route: ActivatedRoute) { }
+  private inventoriesSub: Subscription;
+  constructor(public route: ActivatedRoute, public productservice: ProductService) { }
   ngOnInit(): void {
+    
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("VendorId")) {
         this.vendorId = paramMap.get("VendorId");
-        /*this.postsService.getPost(this.postId).subscribe(postData => {
-          this.isLoading = false;
-          this.post = {
-            id: postData._id,
-            title: postData.title,
-            content: postData.content,
-            imagePath: postData.imagePath
-          };
-          this.form.setValue({
-            title: this.post.title,
-            content: this.post.content,
-            image: this.post.imagePath
-          });
-        });*/
-      } 
+        this.productservice.getvendorInventory(this.vendorId);
+       this.inventoriesSub = this.productservice.getPostUpdateListener()
+       .subscribe((inventories: Inventory[]) => {
+      this.inventories = inventories;
+      this.list = inventories.reverse();
+    });
+    //this.postsService.getuserPosts(this.userid);
+     } 
     });
   }
   openSearch() {

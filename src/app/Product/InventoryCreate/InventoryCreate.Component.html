@@ -6,55 +6,68 @@
     
     
     <mat-card>
-        <form (submit)="onAddInventory(vendorform)" #vendorform="ngForm">
+      <form [formGroup]="form" (submit)="onAddInventory()" > 
+        <!--form (submit)="onAddInventory(vendorform)" #vendorform="ngForm"-->
         <mat-form-field>
           <input
-          matInput
+          matInput type="text"
+          formControlName="productName"
           name = "productName"
-          ngModel
           required
           placeholder="Enter the name of the product"
           >
+          <mat-error *ngIf="form.get('productName').invalid">Please enter a ProductName.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput 
-          name="itembrand"
-          ngModel
-          placeholder="Enter Brand name of item"
+          <input matInput type="text"
+          formControlName="productBrand"
+          name="productBrand"
+          placeholder="Enter Brand name of the product"
           >
+          <mat-error *ngIf="form.get('productBrand').invalid">Please enter a ProductBrand.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput 
-          name="unit"
-          ngModel
-          placeholder="Item Unit for measure">
+          <input matInput type="text"
+          formControlName="productCategory"
+          name="productCategory"
+          placeholder="Enter Category of the product"
+          >
+          <mat-error *ngIf="form.get('productCategory').invalid">Please enter a ProductBrand.</mat-error>
         </mat-form-field>
+        <mat-form-field>
+          <input matInput
+          formControlName="unit"
+          name="unit"
+          placeholder="Product's Unit for measure">
+          <mat-error *ngIf="form.get('unit').invalid">Please enter a Unit for Measure.</mat-error>
+        </mat-form-field>
+        
         <mat-form-field>
           <input matInput rows="6" 
+          formControlName="Description"
           name="Description"
-          ngModel
           placeholder="Enter Item Description">
+          <mat-error *ngIf="form.get('Description').invalid">Please enter a Description.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput 
-          name="itemprice"
-          ngModel
+          <input matInput type="number"
+          formControlName="MRP"
+          name="MRP"
           required
           placeholder="Enter price per item"
           >
+          <mat-error *ngIf="form.get('MRP').invalid">Please enter the price.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput 
-          name="Stockcnt"
-          ngModel
+          <input matInput type="number"
+          formControlName="stockCnt"
+          name="stockCnt"
           required
           placeholder="Enter Stock count"
           >
+          <mat-error *ngIf="form.get('stockCnt').invalid">Please enter the stockCnt.</mat-error>
         </mat-form-field>
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit">Save</button>
+        <button mat-raised-button color="accent" type="submit">Save</button>
         </form>
       </mat-card>
       

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { ProductService } from '../product.service';
 import { Inventory } from '../product.model';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-inventory-create',
@@ -12,34 +13,50 @@ import { Inventory } from '../product.model';
 export class InventoryCreateComponent implements OnInit {
     
   productName = '';
-  itembrand = '';
+  productBrand = '';
+  productCategory = '';
   Description = '';
   unit = '';
-  itemprice = '';
-  Stockcnt='';
+  MRP: Number;
+  stockCnt: Number;
+  form: FormGroup;
+  invent:Inventory;
   private mode = "edit";
   private vendorId: string;
-  constructor(public route: ActivatedRoute,Productservice: ProductService) { }
+  private itemId: string;
+  constructor(public route: ActivatedRoute,public productservice: ProductService ,public router: Router) { }
   
   ngOnInit(): void {
+    this.form = new FormGroup({
+      productName: new FormControl(null, {
+        validators: [Validators.required, Validators.minLength(3)]
+      }),
+      productBrand: new FormControl(null, { validators: [Validators.required] }),
+      productCategory: new FormControl(null,{ validators:[Validators.required]}),
+      unit: new FormControl(null, { validators: [Validators.required] }),
+      Description: new FormControl(null,{ validators: [Validators.required]}),
+      MRP: new FormControl(null,{ validators: [Validators.required]}),
+      stockCnt: new FormControl(null,{ validators: [Validators.required]})
+      /*image: new FormControl(null, {
+        validators: [Validators.required],
+        asyncValidators: [mimeType]
+      })*/
+    });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("itemid")) {
+      if (paramMap.has("itemid") && paramMap.has("VendorId")) {
         this.mode = "edit";
-        this.vendorId = paramMap.get("itemid");
-        /*this.postsService.getPost(this.postId).subscribe(postData => {
-          this.isLoading = false;
-          this.post = {
-            id: postData._id,
-            title: postData.title,
-            content: postData.content,
-            imagePath: postData.imagePath
-          };
+        this.vendorId = paramMap.get("VendorId");
+        this.itemId = paramMap.get("itemid");
+        this.invent=this.productservice.getinventory(this.itemId);
           this.form.setValue({
-            title: this.post.title,
-            content: this.post.content,
-            image: this.post.imagePath
+            productName: this.invent.productName,
+            productBrand: this.invent.productBrand,
+            productCategory: this.invent.productCategory,
+            unit: this.invent.unit,
+            Description: this.invent.Description,
+            MRP:this.invent.MRP,
+            stockCnt:this.invent.stockCnt
           });
-        });*/
       } else {
         this.mode = "create";
         this.vendorId = paramMap.get("VendorId");
@@ -51,30 +68,29 @@ export class InventoryCreateComponent implements OnInit {
     }
   });*/
  }
-  onAddInventory(form: NgForm) {
-    if (form.invalid) {
+  onAddInventory() {
+    
+    /*if (this.form.invalid) {
+      console.log(this.vendorId,this.form.value.productName,this.form.value.productBrand,this.form.value.Stockcnt,
+        this.form.value.Description,this.form.value.unit,this.form.value.MRP,this.form.value.Stockcnt);
       return ;
-    }
+    }*/
     if (this.mode === "create") {
-      /*this.pService.addPost(
-        this.form.value.title,
-        this.user,
-        this.form.value.image
-      );*/
+      this.productservice.addinventory(this.vendorId,this.form.value.productName,this.form.value.productBrand,this.form.value.productCategory,this.form.value.stockCnt,
+        this.form.value.Description,this.form.value.unit,this.form.value.MRP);
       alert('Inventory Created');
-      console.log(form.value.productName,form.value.itembrand,form.value.Stockcnt,
-      form.value.Description,form.value.unit,form.value.itemprice);
+      console.log(this.vendorId,this.form.value.productName,this.form.value.productBrand,this.form.value.stockCnt,
+      this.form.value.Description,this.form.value.unit,this.form.value.MRP,this.form.value.stockCnt);
+      
     } else {
-      /*this.postsService.updatePost(
-        this.postId,
-        this.form.value.title,
-        this.form.value.content,
-        this.form.value.image
-      );*/
-      alert('Inventory updated');
-      console.log(form.value.productName,form.value.itembrand,form.value.Stockcnt,
-        form.value.Description,form.value.unit,form.value.itemprice);
+      this.productservice.updatePost(this.itemId ,
+        this.vendorId,this.form.value.productName,this.form.value.productBrand,this.form.value.productCategory,this.form.value.stockCnt,
+        this.form.value.Description,this.form.value.unit,this.form.value.MRP);
+      alert('Inventory updated'+ this.form.value.stockCnt);
+      console.log(this.vendorId,this.itemId,this.form.value.productName,this.form.value.productBrand,this.form.value.stockCnt,
+        this.form.value.Description,this.form.value.unit,this.form.value.MRP,this.form.value.stockCnt);
+      //this.router.navigate(['/product/'+this.vendorId]);
     }
-    form.resetForm();
+    this.form.reset();
   }  
 }

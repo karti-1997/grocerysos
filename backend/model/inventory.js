@@ -3,11 +3,10 @@ var mongoose = require('mongoose');
 const inventorySchema = mongoose.Schema({
 
     vendorId: {
-        type: mongoose.Types.ObjectId,
+        type: String,
         required: true
     },
-    products: [{
-        productName: {
+    productName: {
             type: String,
             required: true
         },
@@ -17,6 +16,10 @@ const inventorySchema = mongoose.Schema({
         },
         productBrand:{
             type: String,
+            required: true
+        },
+        productCategory:{
+            type:String,
             required: true
         },
         unit: {
@@ -34,8 +37,6 @@ const inventorySchema = mongoose.Schema({
         MRP: {
             type: Number
         }
-    }]
-
 });
 
 module.exports = mongoose.model('Inventory',inventorySchema);

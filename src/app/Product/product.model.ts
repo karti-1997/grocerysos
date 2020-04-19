@@ -1,12 +1,12 @@
 export interface Inventory {
-    vendorid: string;
-    products:[{
-        productName: string
+        vendorId: string;
+        id: string
         productId: string
+        productName: string
+        productCategory: string
         productBrand: string
         unit: string
         Description: string
         stockCnt: number
         MRP: number
-    }]
   }

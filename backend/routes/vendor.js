@@ -47,7 +47,7 @@ router.get("/:id", (req, res, next) => {
     if (vendor) {
       res.status(200).json(vendor);
     } else {
-      res.status(404).json({ message: "Post not found!" });
+      res.status(404).json({ message: "Vendor not found!" });
     }
   });
 });

@@ -4,22 +4,13 @@ import { VendorComponent } from './Vendors/vendor/vendor.component';
 import {VendorCreateComponent} from './Vendors/VendorCreate/VendorCreate.component';
 import { InventoryComponent} from './Product/inventory/inventory.component';
 import {InventoryCreateComponent} from './Product/InventoryCreate/InventoryCreate.Component';
-const routes: Routes = [{
-  path: '',
-  component: VendorComponent,
-  /*children: [{
-    path: '',
-    component: DashboardComponent
-  }, {
-    path: 'posts',
-    component: PostsComponent
-  }]*/
-},
+const routes: Routes = [
+{path: '',component: VendorComponent},
 {path: 'product/:VendorId', component: InventoryComponent},
 {path: 'create', component:VendorCreateComponent},
 {path: 'create/:VendorId', component: VendorCreateComponent},
-{path: 'editinventory/:itemid', component: InventoryCreateComponent},
-{path: 'editinventory/:VendorId', component: InventoryCreateComponent}
+{path: 'editinventory/:VendorId', component: InventoryCreateComponent},
+{path: 'editinventory/:VendorId/:itemid', component: InventoryCreateComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

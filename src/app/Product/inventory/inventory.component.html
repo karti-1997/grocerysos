@@ -29,28 +29,28 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">Item id</th>
-        <th scope="col">Item Name</th>
-        <th scope="col">Item Brand</th>
-        <th scope="col">Item Category</th>
-        <th scope="col">Unit of Measure</th>
+        <th scope="col">Productid</th>
+        <th scope="col">ProductName</th>
+        <th scope="col">ProductCategory</th>
+        <th scope="col">ProductBrand</th>
+        <th scope="col">Unit for Measure</th>
         <th scope="col">Price per Unit</th>
         <th scope="col">Item Description</th>
-        <th scope="col">Item Type</th>
+        <th scope="col">Stockcnt</th>
       </tr>
     </thead>
     <tbody *ngFor="let item of list| filter: searchText" >
       <tr>
-        <th scope="row">{{item.Itemid}}</th>
-        <td>{{item.Itemname}}</td>
-        <td>{{item.itemcategory}}</td>
-        <td>{{item.brandname}}</td>
+        <th scope="row">{{item.productId}}</th>
+        <td>{{item.productName}}</td>
+        <td>{{item.productCategory}}</td>
+        <td>{{item.productBrand}}</td>
         <td>{{item.unit}}</td>
-        <td>{{item.price}}</td>
-        <td>{{item.ItemDescription}}</td>
-        <td>{{item.ItemType}}</td>
+        <td>{{item.MRP}}</td>
+        <td>{{item.Description}}</td>
+        <td>{{item.stockCnt}}</td>
         <td>
-        <button mat-icon-button  [routerLink]="['/editinventory',item.Itemid]">
+        <button mat-icon-button  [routerLink]="['/editinventory',vendorId,item.id]">
         <mat-icon>edit</mat-icon>
         </button>
         </td>
