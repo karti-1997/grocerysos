@@ -101,6 +101,7 @@ router.put("/:id",(req, res, next) => {
 );
 
 router.get("/:vendorID", (req, res, next) => {
+  console.log(req.params.vendorID+"from backend");
   Inventory.find({vendorId:req.params.vendorID}).then(documents => {
     res.status(200).json({
       message: "Vendors fetched successfully!",
@@ -108,7 +109,6 @@ router.get("/:vendorID", (req, res, next) => {
     });
   });
 });
-
 
 /*router.delete("/:id", (req, res, next) => {
   Post.deleteOne({ _id: req.params.id }).then(result => {

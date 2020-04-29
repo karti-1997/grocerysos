@@ -1,6 +1,5 @@
 import { Component, OnInit ,ViewChild,ElementRef} from '@angular/core';
 import { Subscription } from 'rxjs';
-import {InventorylistData} from '../../shared/inventory';
 import { ActivatedRoute, ParamMap } from "@angular/router";
 
 

@@ -1,0 +1,60 @@
+.list {
+    font-size: 1rem;
+    color: rgba(0, 0, 0, .87);
+    text-align: center;
+    height: auto;
+    width: 160px;
+    margin-left: 30px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    display: block;
+    border: 1px solid rgba(0,0,0,.12);
+   }
+  
+  .list:hover {
+    font-weight: bold;
+    background-color: #4dd0e1;
+  }
+
+  .example-container {
+    position: absolute;
+    width: 80%;
+    top: 80px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+  }
+  .example-card{
+    width: 25%;
+    height: 30%;
+  }
+
+  .cart {
+    font-size: 1rem;
+    color: rgba(0, 0, 0, .87);
+    text-align: left;
+    height: auto;
+    width: auto;
+    margin-left: 1230px;
+    margin-top: 20px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    display: block;
+    border: 1px solid rgba(0,0,0,.12);
+   }
+   .course-card {
+    margin: 20px 10px;
+   }
+
+   .course-actions {
+    text-align: left;
+    }
+ /*.tp-header-image {
+    background-image: url('https://www.google.nl/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Ftopic%2Fvegetable&psig=AOvVaw23QVEk7frDWo-vZE5BJOC5&ust=1587492284738000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMC29-LL9-gCFQAAAAAdAAAAABAD');
+    background-size: cover;
+ }*/

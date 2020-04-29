@@ -1,0 +1,79 @@
+<mat-toolbar color='primary'>
+<mat-toolbar-row style="padding: 0 5px;">
+      <p>Grocery App</p>  
+</mat-toolbar-row>
+</mat-toolbar>
+<mat-list class="cart">
+      <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">item</th>
+                <th scope="col">qty</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Price</th>
+                <th scope="col">Amt</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of cart">
+              <tr>
+                <th scope="row">{{item.productName}}</th>
+                <td>{{item.quantity}}</td>
+                <td>{{item.unit}}</td>
+                <td>{{item.MRP}}</td>
+                <td>{{item.cost}}</td>
+                <!--td>
+                <button mat-icon-button  [routerLink]="['/editinventory',vendorId,item.id]">
+                <mat-icon>edit</mat-icon>
+                </button>
+                </td-->
+              </tr>
+            </tbody>
+          </table>
+          <p>Total amount:{{amount}}</p>
+          <!--div>
+          <button mat-button (click)="openDialog()" >submit order</button>
+          </div-->
+          <button mat-button (click)="submitted()">
+            submit order
+          </button>
+	<!--mat-list-item *ngFor="let item of cart">
+            <div mat-line style="cursor: pointer;">{{item.name}}{{item.price}}{{item.unit}}{{amount}}</div>
+      </mat-list-item>
+      <p>{{selecteditemcategory}}</p-->
+</mat-list>
+
+
+<mat-sidenav-container class="example-container" >
+      <mat-sidenav mode="side" opened>
+            <mat-list-item *ngFor="let item of Itemcategorylist">
+                  <div mat-line class="list" (click)="selectedcategory(item)" style="cursor: pointer;">{{item}}</div>
+            </mat-list-item>
+      </mat-sidenav>
+      <mat-sidenav-content>
+            <div style="display: flex;padding-top: 1rem;padding-left: 2rem;padding-bottom: 1rem;" fxLayout="row wrap" fxLayoutGap.gt-md="2rem">
+            <mat-card class="example-card" fxflex="26" *ngFor="let item of inventories">
+                  <div style="padding-top: 1rem;">
+                  <mat-card-header >
+                     <!--div mat-card-avatar class = "tp-header-image"></div-->
+                     <mat-card-title>{{item.productName}}</mat-card-title>
+                     <mat-card-subtitle></mat-card-subtitle>
+                  </mat-card-header></div>
+                  <img mat-card-image src = "https://www.vegan.io/blog/assets/10-healthiest-vegetables-to-include-in-your-vegan-diet-2018-04-16/healthiest-vegetables-df1cf550711076d052eaade12c38289a2637c38e546182d3c0136a90cb0bb0b3.jpg" alt = "Learn HTML5">
+                  <mat-card-content>
+                     <h6>ItemDetails</h6>
+                     <p>
+                        price:Rs.{{item.MRP}} per {{item.unit}}
+                     </p>
+                     <p>
+                        Brand: {{item.productBrand}}
+                     </p>
+                     <input type="number" name="quantity" placeholder="Enter the quantity" [(ngModel)]="quantity"/>
+                  </mat-card-content>
+                  <mat-card-actions class="course-actions">
+                     <button mat-button (click)="onitemadded(item,quantity)">Add to cart</button>
+                  </mat-card-actions>
+               </mat-card>
+            </div>
+      </mat-sidenav-content>
+</mat-sidenav-container>
+    

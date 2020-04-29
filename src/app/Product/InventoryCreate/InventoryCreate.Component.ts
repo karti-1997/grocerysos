@@ -81,7 +81,6 @@ export class InventoryCreateComponent implements OnInit {
       alert('Inventory Created');
       console.log(this.vendorId,this.form.value.productName,this.form.value.productBrand,this.form.value.stockCnt,
       this.form.value.Description,this.form.value.unit,this.form.value.MRP,this.form.value.stockCnt);
-      
     } else {
       this.productservice.updatePost(this.itemId ,
         this.vendorId,this.form.value.productName,this.form.value.productBrand,this.form.value.productCategory,this.form.value.stockCnt,

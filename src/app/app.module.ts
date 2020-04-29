@@ -17,12 +17,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatDialogModule} from '@angular/material/dialog'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VendorComponent } from './Vendors/vendor/vendor.component';
 import { InventoryComponent } from './Product/inventory/inventory.component';
 import { VendorCreateComponent } from './Vendors/VendorCreate/VendorCreate.component';
 import { InventoryCreateComponent } from './Product/InventoryCreate/InventoryCreate.Component';
 import { FilterPipes } from './shared/inventoryfilter.pipe';
+import { OrdercomponentComponent } from './ordercomponent/ordercomponent.component';
+import { SigninPageComponent } from './signin-page/signin-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +34,9 @@ import { FilterPipes } from './shared/inventoryfilter.pipe';
     VendorCreateComponent,
     InventoryCreateComponent,
     FilterPipe,
-    FilterPipes
+    FilterPipes,
+    OrdercomponentComponent,
+    SigninPageComponent
   ],
   imports: [
     CommonModule,
@@ -52,6 +57,7 @@ import { FilterPipes } from './shared/inventoryfilter.pipe';
     MatCardModule,
     MatIconModule,
     MatRadioModule,
+    MatDialogModule,
     BrowserAnimationsModule,
   ],
   providers: [],

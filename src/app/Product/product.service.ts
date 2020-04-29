@@ -100,7 +100,4 @@ updatePost(itemId:string,vendorId:string,productName: string,productBrand:string
       this.router.navigate(['/product/'+vendorId]);
     });
 }
-
-
-
 }
