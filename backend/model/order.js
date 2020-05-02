@@ -29,6 +29,9 @@ const orderSchema = mongoose.Schema({
         },
         MRP: {
             type: Number
+        },
+        cost: {
+            type: Number
         }
     }],
     amount : {

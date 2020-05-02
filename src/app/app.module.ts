@@ -17,7 +17,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatDialogModule} from '@angular/material/dialog'
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VendorComponent } from './Vendors/vendor/vendor.component';
 import { InventoryComponent } from './Product/inventory/inventory.component';
@@ -26,6 +27,8 @@ import { InventoryCreateComponent } from './Product/InventoryCreate/InventoryCre
 import { FilterPipes } from './shared/inventoryfilter.pipe';
 import { OrdercomponentComponent } from './ordercomponent/ordercomponent.component';
 import { SigninPageComponent } from './signin-page/signin-page.component';
+import {OrderListComponent} from './ordercomponent/orderlist/orderlist.component';
+import { FranchiseComponent } from './franchise/franchise.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,9 @@ import { SigninPageComponent } from './signin-page/signin-page.component';
     FilterPipe,
     FilterPipes,
     OrdercomponentComponent,
-    SigninPageComponent
+    SigninPageComponent,
+    OrderListComponent,
+    FranchiseComponent
   ],
   imports: [
     CommonModule,
@@ -58,6 +63,7 @@ import { SigninPageComponent } from './signin-page/signin-page.component';
     MatIconModule,
     MatRadioModule,
     MatDialogModule,
+    MatExpansionModule,
     BrowserAnimationsModule,
   ],
   providers: [],

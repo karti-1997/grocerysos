@@ -22,13 +22,15 @@ export class OrdercomponentComponent implements OnInit {
   vendorId:string;
   quantity;
   list=[];
+  customer:string;
+  haveordered:boolean;
   inventories: Inventory[] = [];
   private inventoriesSub: Subscription;
   //product: Product;
   cart=[];
   amount=0;
   status='';
-  haveordered=false;
+  
   order: Order;
   ngOnInit(): void {
     this.orderservice.getcategories();
@@ -57,7 +59,8 @@ export class OrdercomponentComponent implements OnInit {
 }
   onitemadded(sitem,quantity){
     const product : Product ={
-      productId: sitem.productId,
+      productId: sitem.id,
+      //productId: sitem.productId,
       MRP: sitem.MRP,
       cost: (sitem.MRP*quantity),
       quantity: quantity,
@@ -69,7 +72,20 @@ export class OrdercomponentComponent implements OnInit {
     console.log("I am cart"+this.cart);
     this.amount=this.amount+product.cost;
   }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SigninPageComponent, {
+      width: '300px',
+      data: {haveordered:this.haveordered}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.customer=result.data;
+      console.log(this.customer);
+    });
+  }
+
   submitted(){
+    
     const order ={
       id : null,
       vendorId:this.vendorId,
@@ -78,17 +94,18 @@ export class OrdercomponentComponent implements OnInit {
       amount: this.amount,
       orderStatus:'Pending'
     }
-    this.orderservice.submitorder(order);
-    alert("Your order has been submitted successfully");
-  }
-  openDialog(): void {
-    const dialogRef = this.dialog.open(SigninPageComponent, {
-      width: '300px',
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      
-    });
+    if(order.products.length>0){
+      if(this.customer)
+      {
+        this.orderservice.submitorder(order);
+        alert("your order has been submitted successfully");
+      }
+      else{
+        alert("Please login to your account");
+        this.openDialog();
+      }
+    }
+    else
+      alert("your Cart is empty");
   }
 }

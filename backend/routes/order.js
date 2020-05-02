@@ -40,4 +40,29 @@ router.get("", (req, res, next) => {
  
 });
 
+router.get("/fetch/:vid", (req, res, next) => {
+  Order.find({vendorId:req.params.vid}).then(documents => {
+    res.status(200).json({
+      message: "orders fetched successfully based on vendorId!",
+      orders: documents
+    });
+  });
+});
+
+
+router.put("/:id",(req, res, next) => {
+  const order = new Order({
+    _id:req.params.id,
+    customerId:req.body.customerId,
+    vendorId: req.body.vendorId,
+    products: req.body.products,
+    amount : req.body.amount,
+    orderStatus: req.body.orderStatus
+});
+    console.log(order);
+    Order.updateOne({ _id: req.params.id }, order).then(result => {
+      res.status(200).json({ message: "Update successful!" });
+    });
+  }
+);
 module.exports = router;

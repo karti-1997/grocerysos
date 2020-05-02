@@ -1,0 +1,44 @@
+<mat-accordion >
+    <mat-expansion-panel *ngFor="let order of orders">
+      <mat-expansion-panel-header >
+        {{order.customerId}},customer Name, customerAddress
+      </mat-expansion-panel-header>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">item</th>
+            <th scope="col">qty</th>
+            <th scope="col">Unit</th>
+            <th scope="col">Price</th>
+            <th scope="col">Amt</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of order.products">
+          <tr>
+            <th scope="row">{{item.productName}}</th>
+            <td>{{item.quantity}}</td>
+            <td>{{item.unit}}</td>
+            <td>{{item.MRP}}</td>
+            <td>{{item.cost}}</td>
+            <!--td>
+            <button mat-icon-button  [routerLink]="['/editinventory',vendorId,item.id]">
+            <mat-icon>edit</mat-icon>
+            </button>
+            </td-->
+          </tr>
+        </tbody>
+      </table>
+      <mat-radio-group [(ngModel)]="order.orderStatus">
+        <mat-radio-button value="Pending">Pending</mat-radio-button>
+        <mat-radio-button value="Processing">Processing</mat-radio-button>
+        <mat-radio-button value="ReadyToDeliver">ReadyToDeliver</mat-radio-button>
+        <mat-radio-button value="PickedUp">'PickedUp'</mat-radio-button>
+      </mat-radio-group>
+      <!--div>Your Answer: {{ selection }}</div-->
+      <!--div>Your Answer: {{ question.Answer }}</div-->
+      <mat-action-row>
+          <button mat-raised-button color="primary" (click)="statussaved(order)">save status</button>
+          <!--button mat-raised-button color="primary" (click)="onSubmit(question.id)">Submit</button-->
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
