@@ -24,7 +24,7 @@
     "@angular/platform-browser-dynamic": "~9.0.4",
     "@angular/router": "~9.0.4",
     "@material/card": "^5.1.0",
-    "highcharts": "^8.0.1",
+    "highcharts": "^9.0.0",
     "highcharts-angular": "^2.4.0",
     "i": "^0.3.6",
     "mongoose": "^5.9.7",
